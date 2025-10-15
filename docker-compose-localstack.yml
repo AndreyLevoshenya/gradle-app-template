@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  localstack:
+    image: localstack/localstack:stable
+    container_name: localstack
+    ports:
+      - "4566:4566"
+      - "4510-4559:4510-4559"
+    environment:
+      - SERVICES=s3,sqs,lambda,ec2
+      - PERSISTENCE=true
+      - DEBUG=1
+      - LAMBDA_EXECUTOR=docker
+    volumes:
+      - localstack_data:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  localstack_data:
