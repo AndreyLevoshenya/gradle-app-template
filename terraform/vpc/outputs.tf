@@ -7,7 +7,7 @@ output "vpc" {
   }
 }
 
-output "public_subnets" {
+output "vpc_public_subnets" {
   description = "Public subnets with IDs, CIDR blocks and AZs"
   value = [
     for idx, subnet in aws_subnet.public_subnets : {
@@ -21,7 +21,7 @@ output "public_subnets" {
   ]
 }
 
-output "private_subnets" {
+output "vpc_private_subnets" {
   description = "Private subnets with IDs, CIDR blocks, AZs and associated NAT gateways"
   value = [
     for idx, subnet in aws_subnet.private_subnets : {
@@ -35,7 +35,7 @@ output "private_subnets" {
   ]
 }
 
-output "nat_gateways" {
+output "vpc_nat_gateways" {
   description = "NAT Gateway IDs with associated EIP and subnet"
   value = [
     for idx, nat in aws_nat_gateway.nat : {
@@ -47,7 +47,7 @@ output "nat_gateways" {
   ]
 }
 
-output "internet_gateway" {
+output "vpc_internet_gateway" {
   description = "Internet Gateway ID"
   value = {
     id   = aws_internet_gateway.igw.id
@@ -55,7 +55,7 @@ output "internet_gateway" {
   }
 }
 
-output "route_tables" {
+output "vpc_route_tables" {
   description = "All route tables in the VPC"
   value = {
     public = {
